@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="1714jlindahl2dexercise">
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="1741jlindahl2E">
   <Items>
     <LogicalFolder Name="Connections" Type="2" Sorted="true">
       <Items>
         <ConnectionNode Name="(local):DESKTOP-QT5C2O0\Josly">
-          <Created>2018-10-15T16:13:27.5391565-05:00</Created>
+          <Created>2018-10-17T17:26:58.5073346-05:00</Created>
           <Type>SQL</Type>
           <Server>(local)</Server>
           <UserName />
@@ -29,47 +29,53 @@
     </LogicalFolder>
     <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
       <Items>
-        <FileNode Name="1714jlindahl2d1.PNG">
+        <FileNode Name="1714jlindahl2e1.PNG">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />
           <AssociatedConnUserName />
-          <FullPath>1714jlindahl2d1.PNG</FullPath>
+          <FullPath>1714jlindahl2e1.PNG</FullPath>
         </FileNode>
-        <FileNode Name="1714jlindahl2d2.PNG">
+        <FileNode Name="1714jlindahl2e2.PNG">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />
           <AssociatedConnUserName />
-          <FullPath>1714jlindahl2d2.PNG</FullPath>
+          <FullPath>1714jlindahl2e2.PNG</FullPath>
         </FileNode>
-        <FileNode Name="1714jlindahl2d3.PNG">
+        <FileNode Name="1714jlindahl2e3.PNG">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />
           <AssociatedConnUserName />
-          <FullPath>1714jlindahl2d3.PNG</FullPath>
+          <FullPath>1714jlindahl2e3.PNG</FullPath>
         </FileNode>
-        <FileNode Name="1714jlindahl2d4.PNG">
+        <FileNode Name="1714jlindahl2e4.PNG">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />
           <AssociatedConnUserName />
-          <FullPath>1714jlindahl2d4.PNG</FullPath>
+          <FullPath>1714jlindahl2e4.PNG</FullPath>
         </FileNode>
-        <FileNode Name="1714jlindahl2d5.PNG">
+        <FileNode Name="1714jlindahl2e5.PNG">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />
           <AssociatedConnUserName />
-          <FullPath>1714jlindahl2d5.PNG</FullPath>
+          <FullPath>1714jlindahl2e5.PNG</FullPath>
         </FileNode>
-        <FileNode Name="1714jlindahl2d6.PNG">
+        <FileNode Name="1714jlindahl2e6.PNG">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />
           <AssociatedConnUserName />
-          <FullPath>1714jlindahl2d6.PNG</FullPath>
+          <FullPath>1714jlindahl2e6.PNG</FullPath>
         </FileNode>
-        <FileNode Name="1714jlindahl2d7.PNG">
+        <FileNode Name="1714jlindahl2e7.PNG">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />
           <AssociatedConnUserName />
-          <FullPath>1714jlindahl2d7.PNG</FullPath>
+          <FullPath>1714jlindahl2e7.PNG</FullPath>
+        </FileNode>
+        <FileNode Name="1714jlindahl2e8.PNG">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>1714jlindahl2e8.PNG</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>
