@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AnimalShelterModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AnimalShelterModelStoreContainer">
+    <EntitySet Name="AnimalTypes" EntityType="AnimalShelterModel.Store.AnimalTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Animals" EntityType="AnimalShelterModel.Store.Animals" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="People" EntityType="AnimalShelterModel.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DonationTypes" EntityType="AnimalShelterModel.Store.DonationTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Donations" EntityType="AnimalShelterModel.Store.Donations" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AnimalTypeAnimal" Association="AnimalShelterModel.Store.AnimalTypeAnimal">
+      <End Role="AnimalType" EntitySet="AnimalTypes" />
+      <End Role="Animal" EntitySet="Animals" />
+    </AssociationSet>
+    <AssociationSet Name="PersonAnimal" Association="AnimalShelterModel.Store.PersonAnimal">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Animal" EntitySet="Animals" />
+    </AssociationSet>
+    <AssociationSet Name="PersonDonation" Association="AnimalShelterModel.Store.PersonDonation">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Donation" EntitySet="Donations" />
+    </AssociationSet>
+    <AssociationSet Name="DonationTypeDonation" Association="AnimalShelterModel.Store.DonationTypeDonation">
+      <End Role="DonationType" EntitySet="DonationTypes" />
+      <End Role="Donation" EntitySet="Donations" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AnimalTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Animals">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AnimalName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Birthdate" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="AnimalType_Id" Type="int" Nullable="false" />
+    <Property Name="Person_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="5" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="35" />
+    <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="DonationTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Donations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DonationDate" Type="datetime" Nullable="false" />
+    <Property Name="Value" Type="decimal" Nullable="false" />
+    <Property Name="Person_Id" Type="int" Nullable="false" />
+    <Property Name="DonationType_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="AnimalTypeAnimal">
+    <End Role="AnimalType" Type="AnimalShelterModel.Store.AnimalTypes" Multiplicity="1" />
+    <End Role="Animal" Type="AnimalShelterModel.Store.Animals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnimalType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Animal">
+        <PropertyRef Name="AnimalType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonAnimal">
+    <End Role="Person" Type="AnimalShelterModel.Store.People" Multiplicity="1" />
+    <End Role="Animal" Type="AnimalShelterModel.Store.Animals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Animal">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonDonation">
+    <End Role="Person" Type="AnimalShelterModel.Store.People" Multiplicity="1" />
+    <End Role="Donation" Type="AnimalShelterModel.Store.Donations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Donation">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DonationTypeDonation">
+    <End Role="DonationType" Type="AnimalShelterModel.Store.DonationTypes" Multiplicity="1" />
+    <End Role="Donation" Type="AnimalShelterModel.Store.Donations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Donation">
+        <PropertyRef Name="DonationType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="AnimalShelterModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="AnimalShelterModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AnimalTypes" EntityType="AnimalShelterModel.AnimalType" />
+          <EntitySet Name="Animals" EntityType="AnimalShelterModel.Animal" />
+          <EntitySet Name="People" EntityType="AnimalShelterModel.Person" />
+          <AssociationSet Name="AnimalTypeAnimal" Association="AnimalShelterModel.AnimalTypeAnimal">
+            <End Role="AnimalType" EntitySet="AnimalTypes" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="PersonAnimal" Association="AnimalShelterModel.PersonAnimal">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <EntitySet Name="DonationTypes" EntityType="AnimalShelterModel.DonationType" />
+          <EntitySet Name="Donations" EntityType="AnimalShelterModel.Donation" />
+          <AssociationSet Name="PersonDonation" Association="AnimalShelterModel.PersonDonation">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Donation" EntitySet="Donations" />
+          </AssociationSet>
+          <AssociationSet Name="DonationTypeDonation" Association="AnimalShelterModel.DonationTypeDonation">
+            <End Role="DonationType" EntitySet="DonationTypes" />
+            <End Role="Donation" EntitySet="Donations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AnimalType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="20" />
+          <NavigationProperty Name="Animals" Relationship="AnimalShelterModel.AnimalTypeAnimal" FromRole="AnimalType" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnimalName" Type="String" Nullable="false" />
+          <NavigationProperty Name="AnimalType" Relationship="AnimalShelterModel.AnimalTypeAnimal" FromRole="Animal" ToRole="AnimalType" />
+          <NavigationProperty Name="Person" Relationship="AnimalShelterModel.PersonAnimal" FromRole="Animal" ToRole="Person" />
+          <Property Name="Birthdate" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Animals" Relationship="AnimalShelterModel.PersonAnimal" FromRole="Person" ToRole="Animal" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="5" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="25" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="35" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" />
+          <NavigationProperty Name="Donations" Relationship="AnimalShelterModel.PersonDonation" FromRole="Person" ToRole="Donation" />
+        </EntityType>
+        <Association Name="AnimalTypeAnimal">
+          <End Type="AnimalShelterModel.AnimalType" Role="AnimalType" Multiplicity="1" />
+          <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="*" />
+        </Association>
+        <Association Name="PersonAnimal">
+          <End Type="AnimalShelterModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="AnimalShelterModel.Animal" Role="Animal" Multiplicity="*" />
+        </Association>
+        <EntityType Name="DonationType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="15" />
+          <NavigationProperty Name="Donations" Relationship="AnimalShelterModel.DonationTypeDonation" FromRole="DonationType" ToRole="Donation" />
+        </EntityType>
+        <EntityType Name="Donation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Person" Relationship="AnimalShelterModel.PersonDonation" FromRole="Donation" ToRole="Person" />
+          <NavigationProperty Name="DonationType" Relationship="AnimalShelterModel.DonationTypeDonation" FromRole="Donation" ToRole="DonationType" />
+          <Property Name="DonationDate" Type="DateTime" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Nullable="false" />
+        </EntityType>
+        <Association Name="PersonDonation">
+          <End Type="AnimalShelterModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="AnimalShelterModel.Donation" Role="Donation" Multiplicity="*" />
+        </Association>
+        <Association Name="DonationTypeDonation">
+          <End Type="AnimalShelterModel.DonationType" Role="DonationType" Multiplicity="1" />
+          <End Type="AnimalShelterModel.Donation" Role="Donation" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AnimalShelterModelStoreContainer" CdmEntityContainer="AnimalShelterModelContainer">
+    <EntitySetMapping Name="AnimalTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(AnimalShelterModel.AnimalType)">
+        <MappingFragment StoreEntitySet="AnimalTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Animals">
+      <EntityTypeMapping TypeName="IsTypeOf(AnimalShelterModel.Animal)">
+        <MappingFragment StoreEntitySet="Animals">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AnimalName" ColumnName="AnimalName" />
+          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="IsTypeOf(AnimalShelterModel.Person)">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonationTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(AnimalShelterModel.DonationType)">
+        <MappingFragment StoreEntitySet="DonationTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Donations">
+      <EntityTypeMapping TypeName="IsTypeOf(AnimalShelterModel.Donation)">
+        <MappingFragment StoreEntitySet="Donations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DonationDate" ColumnName="DonationDate" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AnimalTypeAnimal" TypeName="AnimalShelterModel.AnimalTypeAnimal" StoreEntitySet="Animals">
+      <EndProperty Name="AnimalType">
+        <ScalarProperty Name="Id" ColumnName="AnimalType_Id" />
+      </EndProperty>
+      <EndProperty Name="Animal">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonAnimal" TypeName="AnimalShelterModel.PersonAnimal" StoreEntitySet="Animals">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Person_Id" />
+      </EndProperty>
+      <EndProperty Name="Animal">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonDonation" TypeName="AnimalShelterModel.PersonDonation" StoreEntitySet="Donations">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Person_Id" />
+      </EndProperty>
+      <EndProperty Name="Donation">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DonationTypeDonation" TypeName="AnimalShelterModel.DonationTypeDonation" StoreEntitySet="Donations">
+      <EndProperty Name="DonationType">
+        <ScalarProperty Name="Id" ColumnName="DonationType_Id" />
+      </EndProperty>
+      <EndProperty Name="Donation">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
