@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c9068faaf6204753bb8ef8df1f5cf42b" Name="Diagram1" >
+        <EntityTypeShape EntityType="PropertyMgr2Model.Building" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="PropertyMgr2Model.Apartment" Width="1.5" PointX="2.375" PointY="0.5" />
+        <EntityTypeShape EntityType="PropertyMgr2Model.Person" Width="1.5" PointX="4.625" PointY="0.5" />
+        <EntityTypeShape EntityType="PropertyMgr2Model.LineItem" Width="1.5" PointX="0.5" PointY="3.75" />
+        <EntityTypeShape EntityType="PropertyMgr2Model.Invoice" Width="1.5" PointX="2.5" PointY="3.625" />
+        <EntityTypeShape EntityType="PropertyMgr2Model.Receipt" Width="1.5" PointX="4.5" PointY="3.625" />
+        <AssociationConnector Association="PropertyMgr2Model.BuildingApartment" />
+        <AssociationConnector Association="PropertyMgr2Model.PersonApartment" />
+        <AssociationConnector Association="PropertyMgr2Model.PersonApartment1" />
+        <AssociationConnector Association="PropertyMgr2Model.ApartmentInvoice" />
+        <AssociationConnector Association="PropertyMgr2Model.InvoiceLineItem" />
+        <AssociationConnector Association="PropertyMgr2Model.InvoiceReceipt" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
