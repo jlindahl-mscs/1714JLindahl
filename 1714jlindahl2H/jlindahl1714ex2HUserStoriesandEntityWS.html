@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    h1, h2, h3, h4, h5, h6 {
+      color: #006060;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #303030;
+    }
+
+      body > ul > li {
+        margin-top: 1em;
+      }
+
+      body > ol > li {
+        margin-top: 0.75em;
+      }
+
+    ol ol {
+      list-style-type: lower-alpha;
+    }
+
+      ol ol ol {
+        list-style-type: lower-roman;
+      }
+
+        ol ol ol ol {
+          list-style-type: lower-greek;
+        }
+
+    p {
+      margin-left: 1em;
+    }
+
+    li img {
+      vertical-align: text-top;
+      display: inline-block;
+    }
+
+    .twocols {
+      -webkit-columns: 100px 2; /* Chrome, Safari, Opera */
+      -moz-columns: 100px 2; /* Firefox */
+      columns: 100px 2;
+    }
+
+    div.twocols > ol {
+      margin-top: 0px;
+    }
+
+      div.twocols > ol > li {
+        margin-bottom: .75em;
+      }
+  </style>
+</head>
+<body>
+<h3>User Stories </h3>
+<p>As a neighborhood member, I want to borrow and share books with others within the neighborhood.</p>
+<p>As a borrower, I want to see what books are available to borrow in my neighborhood. </p>
+<p>As a lender, I want to keep track of who has borrowed my book and when it might be returned. </p>
+<p>As a borrower, I want to search for books by title, author, ISBN, and genre.</p>
+<p>As a lender and a borrower, I want to be able to contact another lender or borrower that has possession of a certain book.</p>
+<br></br>
+<h3><em>Joslyn Lindahl&nbsp; exercise 1I (Neighborhood Book Share)</em></h3>
+<h3>COMC1714 Entities Worksheet</h3>
+<p>&nbsp;</p>
+<div style="margin-left: 1em;">
+<h4>Business transactions:</h4>
+<p>Transaction (TransactionId, BookId,LenderId,BorrowerId,DateBorrowed,DateReturned)</p>
+<p><del>Borrowed (BookId,Lender, Borrower, Date Borrowed, Due Date)</del></p>
+    <p><del>Returned (BookId, Lender, Borrower, Returned Date)</del></p>
+<h4>Transaction line items:</h4>
+<p>&nbsp;</p>
+<h4>Product or service related to a transaction:</h4>
+<p>Book (BookId, Title, AuthorId, ISBN, GenreId, <del>Lender</del>, <del>Borrower</del>)</p>
+<h4>Roles of people:</h4>
+<p>Author (AuthorId, FirstName, LastName)</p>
+<p>Lender (PersonId)</p>
+    <p>Borrower (PersonId, BookId)</p>
+<h4>Place of transaction or service:</h4>
+<p>&nbsp;</p>
+<h4>Noteworth events:</h4>
+<p>&nbsp;</p>
+<h4>Physical objects:</h4>
+<p>Author (AuthorId, FirstName, LastName)</p>
+<p>Person (PersonId, FirstName,LastName, Address, City, State, Zip, Phone)</p>
+    <p>Book (BookId, Title, Author, ISBN, GenreId, Lender, Borrower)</p>
+<h4>Locations:</h4>
+<p>&nbsp;</p>
+<h4>Descriptions of things (text, unit of measurement, time period, etc.):</h4>
+<p>Genre (GenreId, Description)</p>
+<h4>Catalogs:</h4>
+<p>&nbsp;</p>
+<h4>Containers of other things:</h4>
+<p>&nbsp;</p>
+<h4>Things in a container:</h4>
+<p>&nbsp;</p>
+</div>
+</body>
+</html>

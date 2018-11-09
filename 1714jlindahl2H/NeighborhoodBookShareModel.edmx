@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NeighborhoodBookShareModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="NeighborhoodBookShareModelStoreContainer">
+    <EntitySet Name="People" EntityType="NeighborhoodBookShareModel.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Books" EntityType="NeighborhoodBookShareModel.Store.Books" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Genres" EntityType="NeighborhoodBookShareModel.Store.Genres" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Authors" EntityType="NeighborhoodBookShareModel.Store.Authors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Transactions" EntityType="NeighborhoodBookShareModel.Store.Transactions" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="GenreBook" Association="NeighborhoodBookShareModel.Store.GenreBook">
+      <End Role="Genre" EntitySet="Genres" />
+      <End Role="Book" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="AuthorBook" Association="NeighborhoodBookShareModel.Store.AuthorBook">
+      <End Role="Author" EntitySet="Authors" />
+      <End Role="Book" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="BookTransaction" Association="NeighborhoodBookShareModel.Store.BookTransaction">
+      <End Role="Book" EntitySet="Books" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="PersonTransaction" Association="NeighborhoodBookShareModel.Store.PersonTransaction">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="PersonTransaction1" Association="NeighborhoodBookShareModel.Store.PersonTransaction1">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Zip" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContactMethod" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Books">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ISBN" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Genre_Id" Type="int" Nullable="false" />
+    <Property Name="Author_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Genres">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Authors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateBorrowed" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateReturned" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Book_Id" Type="int" Nullable="false" />
+    <Property Name="Lender_Id" Type="int" Nullable="false" />
+    <Property Name="Borrower_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="GenreBook">
+    <End Role="Genre" Type="NeighborhoodBookShareModel.Store.Genres" Multiplicity="1" />
+    <End Role="Book" Type="NeighborhoodBookShareModel.Store.Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="Genre_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AuthorBook">
+    <End Role="Author" Type="NeighborhoodBookShareModel.Store.Authors" Multiplicity="1" />
+    <End Role="Book" Type="NeighborhoodBookShareModel.Store.Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Author">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="Author_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BookTransaction">
+    <End Role="Book" Type="NeighborhoodBookShareModel.Store.Books" Multiplicity="1" />
+    <End Role="Transaction" Type="NeighborhoodBookShareModel.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="Book_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonTransaction">
+    <End Role="Person" Type="NeighborhoodBookShareModel.Store.People" Multiplicity="1" />
+    <End Role="Transaction" Type="NeighborhoodBookShareModel.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="Lender_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonTransaction1">
+    <End Role="Person" Type="NeighborhoodBookShareModel.Store.People" Multiplicity="1" />
+    <End Role="Transaction" Type="NeighborhoodBookShareModel.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="Borrower_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="NeighborhoodBookShareModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="NeighborhoodBookShareModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="People" EntityType="NeighborhoodBookShareModel.Person" />
+          <EntitySet Name="Books" EntityType="NeighborhoodBookShareModel.Book" />
+          <EntitySet Name="Genres" EntityType="NeighborhoodBookShareModel.Genre" />
+          <EntitySet Name="Authors" EntityType="NeighborhoodBookShareModel.Author" />
+          <EntitySet Name="Transactions" EntityType="NeighborhoodBookShareModel.Transaction" />
+          <AssociationSet Name="GenreBook" Association="NeighborhoodBookShareModel.GenreBook">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="AuthorBook" Association="NeighborhoodBookShareModel.AuthorBook">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="BookTransaction" Association="NeighborhoodBookShareModel.BookTransaction">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="PersonTransaction" Association="NeighborhoodBookShareModel.PersonTransaction">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="PersonTransaction1" Association="NeighborhoodBookShareModel.PersonTransaction1">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" />
+          <Property Name="State" Type="String" Nullable="false" />
+          <Property Name="Zip" Type="String" Nullable="false" />
+          <Property Name="ContactMethod" Type="String" Nullable="false" />
+          <NavigationProperty Name="Transactions" Relationship="NeighborhoodBookShareModel.PersonTransaction" FromRole="Person" ToRole="Transaction" />
+          <NavigationProperty Name="Transactions1" Relationship="NeighborhoodBookShareModel.PersonTransaction1" FromRole="Person" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="ISBN" Type="String" Nullable="false" />
+          <NavigationProperty Name="Genre" Relationship="NeighborhoodBookShareModel.GenreBook" FromRole="Book" ToRole="Genre" />
+          <NavigationProperty Name="Author" Relationship="NeighborhoodBookShareModel.AuthorBook" FromRole="Book" ToRole="Author" />
+          <NavigationProperty Name="Transactions" Relationship="NeighborhoodBookShareModel.BookTransaction" FromRole="Book" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="NeighborhoodBookShareModel.GenreBook" FromRole="Genre" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="NeighborhoodBookShareModel.AuthorBook" FromRole="Author" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateBorrowed" Type="String" Nullable="false" />
+          <Property Name="DateReturned" Type="String" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="NeighborhoodBookShareModel.BookTransaction" FromRole="Transaction" ToRole="Book" />
+          <NavigationProperty Name="Lender" Relationship="NeighborhoodBookShareModel.PersonTransaction" FromRole="Transaction" ToRole="Person" />
+          <NavigationProperty Name="Borrower" Relationship="NeighborhoodBookShareModel.PersonTransaction1" FromRole="Transaction" ToRole="Person" />
+        </EntityType>
+        <Association Name="GenreBook">
+          <End Type="NeighborhoodBookShareModel.Genre" Role="Genre" Multiplicity="1" />
+          <End Type="NeighborhoodBookShareModel.Book" Role="Book" Multiplicity="*" />
+        </Association>
+        <Association Name="AuthorBook">
+          <End Type="NeighborhoodBookShareModel.Author" Role="Author" Multiplicity="1" />
+          <End Type="NeighborhoodBookShareModel.Book" Role="Book" Multiplicity="*" />
+        </Association>
+        <Association Name="BookTransaction">
+          <End Type="NeighborhoodBookShareModel.Book" Role="Book" Multiplicity="1" />
+          <End Type="NeighborhoodBookShareModel.Transaction" Role="Transaction" Multiplicity="*" />
+        </Association>
+        <Association Name="PersonTransaction">
+          <End Type="NeighborhoodBookShareModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="NeighborhoodBookShareModel.Transaction" Role="Transaction" Multiplicity="*" />
+        </Association>
+        <Association Name="PersonTransaction1">
+          <End Type="NeighborhoodBookShareModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="NeighborhoodBookShareModel.Transaction" Role="Transaction" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NeighborhoodBookShareModelStoreContainer" CdmEntityContainer="NeighborhoodBookShareModelContainer">
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="IsTypeOf(NeighborhoodBookShareModel.Person)">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="ContactMethod" ColumnName="ContactMethod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="IsTypeOf(NeighborhoodBookShareModel.Book)">
+        <MappingFragment StoreEntitySet="Books">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genres">
+      <EntityTypeMapping TypeName="IsTypeOf(NeighborhoodBookShareModel.Genre)">
+        <MappingFragment StoreEntitySet="Genres">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Authors">
+      <EntityTypeMapping TypeName="IsTypeOf(NeighborhoodBookShareModel.Author)">
+        <MappingFragment StoreEntitySet="Authors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="IsTypeOf(NeighborhoodBookShareModel.Transaction)">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DateBorrowed" ColumnName="DateBorrowed" />
+          <ScalarProperty Name="DateReturned" ColumnName="DateReturned" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="GenreBook" TypeName="NeighborhoodBookShareModel.GenreBook" StoreEntitySet="Books">
+      <EndProperty Name="Genre">
+        <ScalarProperty Name="Id" ColumnName="Genre_Id" />
+      </EndProperty>
+      <EndProperty Name="Book">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AuthorBook" TypeName="NeighborhoodBookShareModel.AuthorBook" StoreEntitySet="Books">
+      <EndProperty Name="Author">
+        <ScalarProperty Name="Id" ColumnName="Author_Id" />
+      </EndProperty>
+      <EndProperty Name="Book">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BookTransaction" TypeName="NeighborhoodBookShareModel.BookTransaction" StoreEntitySet="Transactions">
+      <EndProperty Name="Book">
+        <ScalarProperty Name="Id" ColumnName="Book_Id" />
+      </EndProperty>
+      <EndProperty Name="Transaction">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonTransaction" TypeName="NeighborhoodBookShareModel.PersonTransaction" StoreEntitySet="Transactions">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Lender_Id" />
+      </EndProperty>
+      <EndProperty Name="Transaction">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonTransaction1" TypeName="NeighborhoodBookShareModel.PersonTransaction1" StoreEntitySet="Transactions">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Borrower_Id" />
+      </EndProperty>
+      <EndProperty Name="Transaction">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
