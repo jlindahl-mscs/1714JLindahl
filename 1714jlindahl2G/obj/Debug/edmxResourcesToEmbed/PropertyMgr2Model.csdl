@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="PropertyMgr2Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="PropertyMgr2ModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Buildings" EntityType="PropertyMgr2Model.Building" />
+    <EntitySet Name="Apartments" EntityType="PropertyMgr2Model.Apartment" />
+    <EntitySet Name="People" EntityType="PropertyMgr2Model.Person" />
+    <EntitySet Name="LineItems" EntityType="PropertyMgr2Model.LineItem" />
+    <EntitySet Name="Invoices" EntityType="PropertyMgr2Model.Invoice" />
+    <EntitySet Name="Receipts" EntityType="PropertyMgr2Model.Receipt" />
+    <AssociationSet Name="BuildingApartment" Association="PropertyMgr2Model.BuildingApartment">
+      <End Role="Building" EntitySet="Buildings" />
+      <End Role="Apartment" EntitySet="Apartments" />
+    </AssociationSet>
+    <AssociationSet Name="PersonApartment" Association="PropertyMgr2Model.PersonApartment">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Apartment" EntitySet="Apartments" />
+    </AssociationSet>
+    <AssociationSet Name="PersonApartment1" Association="PropertyMgr2Model.PersonApartment1">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Apartment" EntitySet="Apartments" />
+    </AssociationSet>
+    <AssociationSet Name="ApartmentInvoice" Association="PropertyMgr2Model.ApartmentInvoice">
+      <End Role="Apartment" EntitySet="Apartments" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="InvoiceLineItem" Association="PropertyMgr2Model.InvoiceLineItem">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="LineItem" EntitySet="LineItems" />
+    </AssociationSet>
+    <AssociationSet Name="InvoiceReceipt" Association="PropertyMgr2Model.InvoiceReceipt">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="Receipt" EntitySet="Receipts" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Building">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BuildingName" Type="String" Nullable="false" />
+    <Property Name="Address" Type="String" Nullable="false" />
+    <Property Name="City" Type="String" Nullable="false" />
+    <Property Name="State" Type="String" Nullable="false" />
+    <Property Name="Zip" Type="String" Nullable="false" />
+    <NavigationProperty Name="Apartments" Relationship="PropertyMgr2Model.BuildingApartment" FromRole="Building" ToRole="Apartment" />
+  </EntityType>
+  <EntityType Name="Apartment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApartmentNum" Type="String" Nullable="false" />
+    <Property Name="SquareFeet" Type="String" Nullable="false" />
+    <Property Name="Bathrooms" Type="String" Nullable="false" />
+    <Property Name="Rent" Type="Decimal" Nullable="false" />
+    <NavigationProperty Name="Building" Relationship="PropertyMgr2Model.BuildingApartment" FromRole="Apartment" ToRole="Building" />
+    <NavigationProperty Name="Tenant" Relationship="PropertyMgr2Model.PersonApartment" FromRole="Apartment" ToRole="Person" />
+    <NavigationProperty Name="Admin" Relationship="PropertyMgr2Model.PersonApartment1" FromRole="Apartment" ToRole="Person" />
+    <NavigationProperty Name="Invoices" Relationship="PropertyMgr2Model.ApartmentInvoice" FromRole="Apartment" ToRole="Invoice" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" />
+    <Property Name="LastName" Type="String" Nullable="false" />
+    <Property Name="Phone" Type="String" Nullable="false" />
+    <Property Name="Email" Type="String" Nullable="false" />
+    <NavigationProperty Name="Apartments" Relationship="PropertyMgr2Model.PersonApartment" FromRole="Person" ToRole="Apartment" />
+    <NavigationProperty Name="Apartments1" Relationship="PropertyMgr2Model.PersonApartment1" FromRole="Person" ToRole="Apartment" />
+  </EntityType>
+  <EntityType Name="LineItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" />
+    <NavigationProperty Name="Invoice" Relationship="PropertyMgr2Model.InvoiceLineItem" FromRole="LineItem" ToRole="Invoice" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceDate" Type="String" Nullable="false" />
+    <Property Name="DueDate" Type="String" Nullable="false" />
+    <NavigationProperty Name="Apartment" Relationship="PropertyMgr2Model.ApartmentInvoice" FromRole="Invoice" ToRole="Apartment" />
+    <NavigationProperty Name="LineItems" Relationship="PropertyMgr2Model.InvoiceLineItem" FromRole="Invoice" ToRole="LineItem" />
+    <NavigationProperty Name="Receipts" Relationship="PropertyMgr2Model.InvoiceReceipt" FromRole="Invoice" ToRole="Receipt" />
+  </EntityType>
+  <EntityType Name="Receipt">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReceiptDate" Type="String" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" />
+    <NavigationProperty Name="Invoice" Relationship="PropertyMgr2Model.InvoiceReceipt" FromRole="Receipt" ToRole="Invoice" />
+  </EntityType>
+  <Association Name="BuildingApartment">
+    <End Type="PropertyMgr2Model.Building" Role="Building" Multiplicity="1" />
+    <End Type="PropertyMgr2Model.Apartment" Role="Apartment" Multiplicity="*" />
+  </Association>
+  <Association Name="PersonApartment">
+    <End Type="PropertyMgr2Model.Person" Role="Person" Multiplicity="1" />
+    <End Type="PropertyMgr2Model.Apartment" Role="Apartment" Multiplicity="*" />
+  </Association>
+  <Association Name="PersonApartment1">
+    <End Type="PropertyMgr2Model.Person" Role="Person" Multiplicity="1" />
+    <End Type="PropertyMgr2Model.Apartment" Role="Apartment" Multiplicity="*" />
+  </Association>
+  <Association Name="ApartmentInvoice">
+    <End Type="PropertyMgr2Model.Apartment" Role="Apartment" Multiplicity="1" />
+    <End Type="PropertyMgr2Model.Invoice" Role="Invoice" Multiplicity="*" />
+  </Association>
+  <Association Name="InvoiceLineItem">
+    <End Type="PropertyMgr2Model.Invoice" Role="Invoice" Multiplicity="1" />
+    <End Type="PropertyMgr2Model.LineItem" Role="LineItem" Multiplicity="*" />
+  </Association>
+  <Association Name="InvoiceReceipt">
+    <End Type="PropertyMgr2Model.Invoice" Role="Invoice" Multiplicity="1" />
+    <End Type="PropertyMgr2Model.Receipt" Role="Receipt" Multiplicity="*" />
+  </Association>
+</Schema>

@@ -1,0 +1,11 @@
+C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\bin\Debug\1714jlindahl2G.dll.config
+C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\bin\Debug\1714jlindahl2G.dll
+C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\bin\Debug\1714jlindahl2G.pdb
+C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\bin\Debug\EntityFramework.dll
+C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\bin\Debug\EntityFramework.xml
+C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\obj\Debug\1714jlindahl2G.csproj.CoreCompileInputs.cache
+C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\obj\Debug\1714jlindahl2G.csproj.CopyComplete
+C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\obj\Debug\1714jlindahl2G.dll
+C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\obj\Debug\1714jlindahl2G.pdb

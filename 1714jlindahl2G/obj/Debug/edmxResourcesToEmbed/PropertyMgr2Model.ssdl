@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PropertyMgr2Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="PropertyMgr2ModelStoreContainer">
+    <EntitySet Name="Buildings" EntityType="PropertyMgr2Model.Store.Buildings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Apartments" EntityType="PropertyMgr2Model.Store.Apartments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="People" EntityType="PropertyMgr2Model.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LineItems" EntityType="PropertyMgr2Model.Store.LineItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Invoices" EntityType="PropertyMgr2Model.Store.Invoices" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Receipts" EntityType="PropertyMgr2Model.Store.Receipts" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="BuildingApartment" Association="PropertyMgr2Model.Store.BuildingApartment">
+      <End Role="Building" EntitySet="Buildings" />
+      <End Role="Apartment" EntitySet="Apartments" />
+    </AssociationSet>
+    <AssociationSet Name="PersonApartment" Association="PropertyMgr2Model.Store.PersonApartment">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Apartment" EntitySet="Apartments" />
+    </AssociationSet>
+    <AssociationSet Name="PersonApartment1" Association="PropertyMgr2Model.Store.PersonApartment1">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Apartment" EntitySet="Apartments" />
+    </AssociationSet>
+    <AssociationSet Name="ApartmentInvoice" Association="PropertyMgr2Model.Store.ApartmentInvoice">
+      <End Role="Apartment" EntitySet="Apartments" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="InvoiceLineItem" Association="PropertyMgr2Model.Store.InvoiceLineItem">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="LineItem" EntitySet="LineItems" />
+    </AssociationSet>
+    <AssociationSet Name="InvoiceReceipt" Association="PropertyMgr2Model.Store.InvoiceReceipt">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="Receipt" EntitySet="Receipts" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Buildings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BuildingName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Zip" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Apartments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApartmentNum" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SquareFeet" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Bathrooms" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rent" Type="decimal" Nullable="false" />
+    <Property Name="Building_Id" Type="int" Nullable="false" />
+    <Property Name="Tenant_Id" Type="int" Nullable="false" />
+    <Property Name="Admin_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LineItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="false" />
+    <Property Name="Invoice_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invoices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DueDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Apartment_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Receipts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReceiptDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="false" />
+    <Property Name="Invoice_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="BuildingApartment">
+    <End Role="Building" Type="PropertyMgr2Model.Store.Buildings" Multiplicity="1" />
+    <End Role="Apartment" Type="PropertyMgr2Model.Store.Apartments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Building">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Apartment">
+        <PropertyRef Name="Building_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonApartment">
+    <End Role="Person" Type="PropertyMgr2Model.Store.People" Multiplicity="1" />
+    <End Role="Apartment" Type="PropertyMgr2Model.Store.Apartments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Apartment">
+        <PropertyRef Name="Tenant_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonApartment1">
+    <End Role="Person" Type="PropertyMgr2Model.Store.People" Multiplicity="1" />
+    <End Role="Apartment" Type="PropertyMgr2Model.Store.Apartments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Apartment">
+        <PropertyRef Name="Admin_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ApartmentInvoice">
+    <End Role="Apartment" Type="PropertyMgr2Model.Store.Apartments" Multiplicity="1" />
+    <End Role="Invoice" Type="PropertyMgr2Model.Store.Invoices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="Apartment_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InvoiceLineItem">
+    <End Role="Invoice" Type="PropertyMgr2Model.Store.Invoices" Multiplicity="1" />
+    <End Role="LineItem" Type="PropertyMgr2Model.Store.LineItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LineItem">
+        <PropertyRef Name="Invoice_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InvoiceReceipt">
+    <End Role="Invoice" Type="PropertyMgr2Model.Store.Invoices" Multiplicity="1" />
+    <End Role="Receipt" Type="PropertyMgr2Model.Store.Receipts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Receipt">
+        <PropertyRef Name="Invoice_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
