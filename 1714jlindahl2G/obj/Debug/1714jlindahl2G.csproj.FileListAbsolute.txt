@@ -9,3 +9,4 @@ C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1
 C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\obj\Debug\1714jlindahl2G.csproj.CopyComplete
 C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\obj\Debug\1714jlindahl2G.dll
 C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\obj\Debug\1714jlindahl2G.pdb
+C:\Users\Josly\Desktop\INTRO TO VISUAL DATABASE APPLICATION TOOLS\1714JLindahl\1714jlindahl2G\obj\Debug\1714jlindahl2G.csprojAssemblyReference.cache
